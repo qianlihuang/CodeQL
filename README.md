@@ -1,1 +1,1 @@
-using CodeQL to extract function calls from varied projects
+Using [CodeQL](https://codeql.github.com/) to extract function call information from projects in various programming languages.
