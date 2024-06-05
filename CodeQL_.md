@@ -1,52 +1,50 @@
-# 资料链接
+# Links to Resources
 
-1. CodeQL官方使用说明 		[CodeQL overview — CodeQL (github.com)](https://codeql.github.com/docs/codeql-overview/)
+CodeQL Official Documentation 		
+  1.0 Overview
 
-   1.1 CLI
+  [CodeQL overview — CodeQL (github.com)](https://codeql.github.com/docs/codeql-overview/)
 
-   CodeQL CLI 安装[Setting up the CodeQL CLI - GitHub Docs](https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/setting-up-the-codeql-cli)
+  1.1 CLI
 
-   创建db[Preparing your code for CodeQL analysis - GitHub Docs](https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/preparing-your-code-for-codeql-analysis)
+  CodeQL CLI Installation [Setting up the CodeQL CLI - GitHub Docs](https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/setting-up-the-codeql-cli)
 
-   查询分析[Analyzing your code with CodeQL queries - GitHub Docs](https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/analyzing-your-code-with-codeql-queries)
+  Creating a Database [Preparing your code for CodeQL analysis - GitHub Docs](https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/preparing-your-code-for-codeql-analysis)
 
-   1.2 查询语句
+  Query Analysis [Analyzing your code with CodeQL queries - GitHub Docs](https://docs.github.com/en/code-security/codeql-cli/getting-started-with-the-codeql-cli/analyzing-your-code-with-codeql-queries)
 
-   指南[CodeQL language guides — CodeQL (github.com)](https://codeql.github.com/docs/codeql-language-guides/)
+  1.2 Query Language
 
-   库[CodeQL standard libraries (github.com)](https://codeql.github.com/codeql-standard-libraries/)
+  Guide [CodeQL language guides — CodeQL (github.com)](https://codeql.github.com/docs/codeql-language-guides/)
 
-   1.3 代码示例
+  Libraries [CodeQL standard libraries (github.com)](https://codeql.github.com/codeql-standard-libraries/)
 
-   go仓库 [codeql/go/ql/examples/snippets at main · github/codeql](https://github.com/github/codeql/tree/main/go/ql/examples/snippets)
+  1.3 Code Examples
 
-   还有其他语言示例
-2. 一些学习链接
+  Go repository [codeql/go/ql/examples/snippets at main · github/codeql](https://github.com/github/codeql/tree/main/go/ql/examples/snippets)
 
-[SummerSec/learning-codeql: CodeQL Java 全网最全的中文学习资料 (github.com)](https://github.com/SummerSec/learning-codeql)
+  Other language examples are also available.
 
-[使用 CodeQL 分析闭源 Java 程序 (seebug.org)](https://paper.seebug.org/1324/)
+# Example(Python)
 
-# 方法流程示例
-
-```
+```bash
 # auto.sh
-# 代码项目目录下
+# Under the root directory of the project
 
-# 创建数据库
+# Create a CodeQL database
 codeql database create db --language=python
 
-# 创建ql文件夹
+# Create a ql directory
 mkdir ql
 
-# 在ql文件夹中创建qlpack.yml文件
-echo "name: dyl/myquery
+# Create a qlpack.yml file in the ql folder
+echo "name: qianlihuang/myquery
 version: 0.0.0
 dependencies: 
     codeql/python-all: \"*\"
     codeql/python-queries: \"*\"" > ql/qlpack.yml
 
-# 在ql文件夹中创建test.ql文件
+# Create a query file in the ql directory
 echo "
 /**
  * Query metadata
@@ -86,13 +84,13 @@ echo "completed!
 
 ![1699938304015](image/CodeQL_/1699938304015.png)
 
-# 现有且已测试过的查询代码
+# Tested CodeQL Queries
 
 ![1699935757245](image/CodeQL_/1699935757245.png)
 
-现有代码是东拼西凑的，需要改进
+may need to be improved
 
-## cpp
+## CPP
 
 ```
 import cpp
@@ -113,11 +111,9 @@ where
 select call_location, call, function as function_name, callee_definition_location
 ```
 
-不足?：会显示调用的库函数
-
 ![1699939204006](image/CodeQL_/1699939204006.png)
 
-## python
+## Python
 
 ```
 /**
@@ -148,7 +144,7 @@ select call_location, caller_scope_location, callee_definition_location"
 
 ![1699940051315](image/CodeQL_/1699940051315.png)
 
-## js
+## JavaScript
 
 ```
 import javascript
@@ -165,8 +161,6 @@ select invoke, function //, invoke_location
 
 ![1699941789063](image/CodeQL_/1699941789063.png)
 
-还不知道用什么方式getlocation显示位置
-
 ## Golang
 
 ```
@@ -181,20 +175,19 @@ select function as function_name, call_location, defi_location
 
 ![1699943523290](image/CodeQL_/1699943523290.png)
 
-# 其他事项
+# Note
 
-在qlpack.yml中需要填的
+qlpack.yml dependencies list
 
 ![1699935790180](image/CodeQL_/1699935790180.png)
 
-# todo
+# Issue
 
-不同语言查询语句不同，需要学习
+difference between query run and analyze
 
-query run 和 analyze的区别
+what is a query metadata
 
-query metadata是什么
+# Tips
 
-# tips
+using VSCode extension to develop CodeQL queries
 
-调试query代码用vscode插件更快
